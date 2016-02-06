@@ -1,4 +1,4 @@
-import numpy as numpy
+import numpy as np
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 import os
@@ -11,8 +11,8 @@ from scipy import misc
 from sklearn.metrics import roc_auc_score, roc_curve, classification_report, confusion_matrix
 import read_images
 import get_labels
-import Metrics
-import Plots
+import metrics
+import plots
 
 ''' Main pipeline script for creating neural net with keras and fitting it to image data
 output predictions for input data'''
@@ -80,7 +80,7 @@ if __name__ == '__main__':
     metrics.calc_acc(y_pred_train, y_train)
     y_pred_test = model.predict_classes(X_test_norm)      # Predicted y_test classification
     print "Train Acc:"
-    calc_acc(y_pred_test, y_test)
+    metrics.calc_acc(y_pred_test, y_test)
     # Classification report
     y_act = get_labels.get_label_1D(y_test)
     print(classification_report(y_act, y_pred_test, target_names=['spiral', 'elliptical', 'uncertain']))

@@ -3,6 +3,7 @@ import requests
 import shutil
 from scipy import misc
 import matplotlib.pyplot as plt
+import os
 
 '''code for getting scraped images from sdss skyserver'''
 
@@ -33,9 +34,9 @@ def create_outfile(gal_id):
 
 def get_img(url, outfile):
     '''get img from url'''
-
-    response = requests.get(url, stream=True)
-	with open(outfile, 'wb') as outfile:
+    if not os.path.isfile(outfile):
+        response = requests.get(url, stream=True)
+        with open(outfile, 'wb') as outfile:
             shutil.copyfileobj(response.raw, outfile)
 	
 
@@ -46,13 +47,15 @@ def plot_img(img):
     plt.imshow(g)
     plt.show()
 
-
-
-if __name__ == '__main__':
-    gal_id, ra, dec = read_galaxy_table('gal_pos_label.txt')
+def maybe_download_indices(a, b):
+    gal_id, ra, dec = read_galaxy_table('../data/gal_pos_label.txt')
     # get images in the range 32000 to 35000 -- can make this an argument
-    for i in range(32000, 35000):
+    for i in range(a, b):
         url = create_url(ra[i], dec[i])
         outfile = create_outfile(gal_id[i])
         get_img(url, outfile)
         #plot_img(outfile)
+
+
+if __name__ == '__main__':
+    maybe_download_indices(32000, 32500)
