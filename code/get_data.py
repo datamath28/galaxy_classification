@@ -4,6 +4,7 @@ import shutil
 from scipy import misc
 import matplotlib.pyplot as plt
 import os
+import sys
 
 '''code for getting scraped images from sdss skyserver'''
 
@@ -25,10 +26,10 @@ def create_url(ra, dec):
     return url
 
 
-def create_outfile(gal_id):
+def create_outfile(gal_id, imgdir):
     '''create name of outfile to save image to'''
 
-    outfile = "../images/img_{0}.png".format(gal_id)
+    outfile = imgdir + "img_{0}.png".format(gal_id)
     return outfile
 
 
@@ -38,6 +39,8 @@ def get_img(url, outfile):
         response = requests.get(url, stream=True)
         with open(outfile, 'wb') as outfile:
             shutil.copyfileobj(response.raw, outfile)
+        return True
+    return False
 	
 
 def plot_img(img):
@@ -47,15 +50,30 @@ def plot_img(img):
     plt.imshow(g)
     plt.show()
 
-def maybe_download_indices(a, b):
+
+def maybe_download_indices(a, b, imgdir="../images/"):
+    print "Maybe downloading images files indexed {0} to {1}".format(a, b)
     gal_id, ra, dec = read_galaxy_table('../data/gal_pos_label.txt')
     # get images in the range 32000 to 35000 -- can make this an argument
+    downloaded = 0
     for i in range(a, b):
         url = create_url(ra[i], dec[i])
-        outfile = create_outfile(gal_id[i])
-        get_img(url, outfile)
-        #plot_img(outfile)
+        outfile = create_outfile(gal_id[i], imgdir)
+        downloaded += get_img(url, outfile)
+        if i % 1000 == 0:
+            print "{0} / {1} complete".format(i, b-a)
+    print "{0} / {1} complete".format(b-a, b-a)
+    print "Finished maybe download.  {0} downloaded, the rest already exist on disk.".format(downloaded)
 
 
 if __name__ == '__main__':
-    maybe_download_indices(32000, 32500)
+    '''
+    First argument is the number of images to ensure we have locally,
+    second argument is the directory to download them to.
+    '''
+    n = int(sys.argv[1])
+    if len(sys.argv) > 2:
+        imgdir = sys.argv[2]
+        maybe_download_indices(0, n, imgdir)
+    else:
+        maybe_download_indices(0, n)
