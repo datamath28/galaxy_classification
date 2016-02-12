@@ -3,6 +3,7 @@ import tensorflow as tf
 import numpy as np
 from constants import batch_size, image_size, num_channels, num_classes
 from simple_feeder import Feeder
+from time import gmtime, strftime
 
 layer1_patch_size = 7
 layer1_stride = 2
@@ -172,7 +173,7 @@ if __name__ == '__main__':
                 total_cross_entropy += l
                 correct += np.sum(np.argmax(predictions, 1) == np.argmax(batch_labels, 1))
 
-            print "Completed epoch of %s data set" % data
+            print "%s Completed epoch of %s data set" % strftime("%Y-%m-%d %H:%M:%S", gmtime()), data
             print "Accuracy: %.1f" % (correct/n * 100)
             print "Average cross entropy per observation %.3f" % (total_cross_entropy/n)
             print '\n'
