@@ -2,7 +2,6 @@ import numpy as np
 import requests
 import shutil
 from scipy import misc
-import matplotlib.pyplot as plt
 import os
 import sys
 
@@ -41,15 +40,6 @@ def get_img(url, outfile):
             shutil.copyfileobj(response.raw, outfile)
         return True
     return False
-	
-
-def plot_img(img):
-    '''plot one image'''
-
-    g = misc.imread(img)
-    plt.imshow(g)
-    plt.show()
-
 
 def maybe_download_indices(a, b, imgdir="../images/"):
     print "Maybe downloading images files indexed {0} to {1}".format(a, b)
