@@ -18,6 +18,7 @@ def randomize(dataset, labels):
 class Feeder(object):
 
     def __init__(self):
+        print "Loading data into memory..."
         self.offset = {'train':0, 'valid':0, 'test':0}
 
         # Metadata and labels
