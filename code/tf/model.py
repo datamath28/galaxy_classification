@@ -134,7 +134,7 @@ if __name__ == '__main__':
         loss = cross_entropy + l2_loss
 
         # Optimizer.
-        optimizer = tf.train.MomentumOptimizer(0.0001, 0.01).minimize(loss)
+        optimizer = tf.train.GradientDescentOptimizer(0.0001).minimize(loss)
 
         # Predictions for the training, validation, and test data.
         prediction = tf.nn.softmax(logits)
