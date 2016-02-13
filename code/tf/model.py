@@ -163,17 +163,17 @@ if __name__ == '__main__':
                     # Include optimization op because we're training
                     _, l, predictions = session.run(
                         [optimizer,
-                         loss,
+                         cross_entropy,
                          prediction,
                          ], feed_dict=feed_dict)
                 else:
                     # Don't run the optimization op because we're testing not training
-                    l, predictions = session.run([loss, prediction, ], feed_dict=feed_dict)
+                    l, predictions = session.run([cross_entropy, prediction, ], feed_dict=feed_dict)
 
                 total_cross_entropy += l
                 correct += np.sum(np.argmax(predictions, 1) == np.argmax(batch_labels, 1))
 
-            print "%s Completed epoch of %s data set" % strftime("%Y-%m-%d %H:%M:%S", gmtime()), data
+            print "%s Completed epoch of %s data set" % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), data)
             print "Accuracy: %.1f" % (correct/n * 100)
             print "Average cross entropy per observation %.3f" % (total_cross_entropy/n)
             print '\n'
@@ -191,6 +191,7 @@ if __name__ == '__main__':
         print "Initialized"
         for step in xrange(num_steps):
             run_epoch(session, data='train', train=True)
-            if step % 5 == 0:
-                run_epoch(session, data='valid', train=False)
+            # The validation epoch is much faster because the optimization op is the most expensive
+            # op and because the validation dataset is smaller.
+            run_epoch(session, data='valid', train=False)
         run_epoch(session, data='test', train=False)
