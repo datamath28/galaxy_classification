@@ -3,6 +3,8 @@ import os
 from scipy import misc
 from constants import max_num_images, image_size, num_channels, num_classes, batch_size
 
+# TODO: Try using a tensorflow queue and see if that speeds things up.
+
 
 def randomize(dataset, labels):
       permutation = np.random.permutation(labels.shape[0])

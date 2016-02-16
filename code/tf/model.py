@@ -4,6 +4,7 @@ import numpy as np
 from constants import batch_size, image_size, num_channels, num_classes
 from simple_feeder import Feeder
 from time import gmtime, strftime
+import time
 
 layer1_patch_size = 7
 layer1_stride = 2
@@ -13,9 +14,9 @@ layer3_patch_size = 3
 layer3_stride = 1
 
 layer1_depth = 24
-layer2_depth = 32
-layer3_depth = 32
-num_hidden = 800
+layer2_depth = 24
+layer3_depth = 24
+num_hidden = 512
 # MOVING_AVERAGE_DECAY = 0.999
 
 
@@ -38,7 +39,6 @@ def get_var(v, averaged):
 if __name__ == '__main__':
 
     feeder = Feeder()
-
     graph = tf.Graph()
 
     with graph.as_default():
@@ -46,10 +46,6 @@ if __name__ == '__main__':
         tf_train_dataset = tf.placeholder(
             tf.float32, shape=(batch_size, image_size, image_size, num_channels))
         tf_train_labels = tf.placeholder(tf.float32, shape=(batch_size, num_classes))
-        # TODO: Don't build a whole graph for these.
-        # Instead run the validation and test data through the same batch process as the train data.
-        tf_valid_dataset = tf.constant(feeder.get_data_set('valid')[0])
-        tf_test_dataset = tf.constant(feeder.get_data_set('test')[0])
 
         # Variables.
         layer1_weights = tf.Variable(tf.truncated_normal(
@@ -65,7 +61,7 @@ if __name__ == '__main__':
         layer3_biases = tf.Variable(tf.constant(1.0, shape=[layer3_depth]))
 
         layer4_weights = tf.Variable(tf.truncated_normal(
-            [1568, num_hidden], stddev=0.1))  # TODO math
+            [1176, num_hidden], stddev=0.1))  # TODO math
         layer4_biases = tf.Variable(tf.constant(1.0, shape=[num_hidden]))
         layer5_weights = tf.Variable(tf.truncated_normal(
             [num_hidden, num_classes], stddev=0.1))
@@ -80,7 +76,6 @@ if __name__ == '__main__':
         # Track the moving averages of all trainable variables.
         # variable_averages = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY)
         # variable_averages_op = variable_averages.apply(tf.trainable_variables())
-
 
         # Model.
         def model(data, dropout=False, averaged=False):
@@ -122,7 +117,7 @@ if __name__ == '__main__':
 
         # Training computation.
         logits = model(tf_train_dataset, dropout=True)
-        cross_entropy = tf.reduce_mean(
+        cross_entropy = tf.reduce_sum(
             tf.nn.softmax_cross_entropy_with_logits(logits, tf_train_labels))
 
         l2_loss = (layer1_weight_decay * tf.nn.l2_loss(layer1_weights)
@@ -134,7 +129,7 @@ if __name__ == '__main__':
         loss = cross_entropy + l2_loss
 
         # Optimizer.
-        optimizer = tf.train.GradientDescentOptimizer(0.0001).minimize(loss)
+        optimizer = tf.train.GradientDescentOptimizer(0.00005).minimize(loss)
 
         # Predictions for the training, validation, and test data.
         prediction = tf.nn.softmax(logits)
@@ -149,6 +144,7 @@ if __name__ == '__main__':
             :return: None
             '''
 
+            start = time.clock()
             # number of data points
             n = 0
             # cross entropy combines additively
@@ -173,10 +169,13 @@ if __name__ == '__main__':
                 total_cross_entropy += l
                 correct += np.sum(np.argmax(predictions, 1) == np.argmax(batch_labels, 1))
 
+            end = time.clock()
+
             print "%s Completed epoch of %s data set" % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), data)
             print "Accuracy: %.1f" % (correct/n * 100)
-            print "Average cross entropy per observation %.3f" % (total_cross_entropy/n)
-            print '\n'
+            print 'Average cross entropy per observation %.3f' % (total_cross_entropy/n)
+            print 'Total time taken: %.1f s' % ((end-start) / 1000)
+            print 'Time per image: %.2f ms\n' % (end-start)
 
     num_steps = 200
 
