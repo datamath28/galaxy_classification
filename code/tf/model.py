@@ -174,8 +174,9 @@ if __name__ == '__main__':
             print "%s Completed epoch of %s data set" % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), data)
             print "Accuracy: %.1f" % (correct/n * 100)
             print 'Average cross entropy per observation %.3f' % (total_cross_entropy/n)
-            print 'Total time taken: %.1f s' % ((end-start) / 1000)
-            print 'Time per image: %.2f ms\n' % (end-start)
+            print 'Total time taken: %.1f s' % (end-start)
+            print 'num observations: %i' % n
+            print 'Time per image: %.2f ms\n' % ((end-start) / n * 1000)
 
     num_steps = 200
 
