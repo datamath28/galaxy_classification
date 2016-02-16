@@ -13,10 +13,10 @@ layer2_stride = 1
 layer3_patch_size = 3
 layer3_stride = 1
 
-layer1_depth = 24
+layer1_depth = 16
 layer2_depth = 24
-layer3_depth = 24
-num_hidden = 512
+layer3_depth = 16
+num_hidden = 256
 # MOVING_AVERAGE_DECAY = 0.999
 
 
@@ -61,7 +61,7 @@ if __name__ == '__main__':
         layer3_biases = tf.Variable(tf.constant(1.0, shape=[layer3_depth]))
 
         layer4_weights = tf.Variable(tf.truncated_normal(
-            [1176, num_hidden], stddev=0.1))  # TODO math
+            [784, num_hidden], stddev=0.1))  # TODO math
         layer4_biases = tf.Variable(tf.constant(1.0, shape=[num_hidden]))
         layer5_weights = tf.Variable(tf.truncated_normal(
             [num_hidden, num_classes], stddev=0.1))
@@ -129,7 +129,7 @@ if __name__ == '__main__':
         loss = cross_entropy + l2_loss
 
         # Optimizer.
-        optimizer = tf.train.GradientDescentOptimizer(0.00005).minimize(loss)
+        optimizer = tf.train.GradientDescentOptimizer(0.00001).minimize(loss)
 
         # Predictions for the training, validation, and test data.
         prediction = tf.nn.softmax(logits)
