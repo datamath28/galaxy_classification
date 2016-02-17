@@ -15,7 +15,7 @@ layer3_stride = 1
 
 layer1_depth = 16
 layer2_depth = 24
-layer3_depth = 16
+layer3_depth = 24
 num_hidden = 256
 # MOVING_AVERAGE_DECAY = 0.999
 
@@ -61,7 +61,7 @@ if __name__ == '__main__':
         layer3_biases = tf.Variable(tf.constant(1.0, shape=[layer3_depth]))
 
         layer4_weights = tf.Variable(tf.truncated_normal(
-            [784, num_hidden], stddev=0.1))  # TODO math
+            [1176, num_hidden], stddev=0.1))  # TODO math
         layer4_biases = tf.Variable(tf.constant(1.0, shape=[num_hidden]))
         layer5_weights = tf.Variable(tf.truncated_normal(
             [num_hidden, num_classes], stddev=0.1))
@@ -77,12 +77,10 @@ if __name__ == '__main__':
         # variable_averages = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY)
         # variable_averages_op = variable_averages.apply(tf.trainable_variables())
 
+        tf_keep_proba = tf.Variable(1., trainable=False)
+
         # Model.
-        def model(data, dropout=False, averaged=False):
-            if dropout:
-                keep_proba = 0.65
-            else:
-                keep_proba = 1
+        def inference(data, averaged=False):
 
             w1 = get_var(layer1_weights, averaged)
             b1 = get_var(layer1_biases, averaged)
@@ -111,12 +109,12 @@ if __name__ == '__main__':
             shape = pool.get_shape().as_list()
             reshape = tf.reshape(pool, [shape[0], shape[1] * shape[2] * shape[3]])
             hidden = tf.nn.relu(tf.matmul(reshape, w4) + b4)
-            dropout = tf.nn.dropout(hidden, keep_proba)
+            dropout = tf.nn.dropout(hidden, tf_keep_proba)
             return tf.matmul(dropout, w5) + b5
 
 
         # Training computation.
-        logits = model(tf_train_dataset, dropout=True)
+        logits = inference(tf_train_dataset)
         cross_entropy = tf.reduce_sum(
             tf.nn.softmax_cross_entropy_with_logits(logits, tf_train_labels))
 
@@ -129,7 +127,7 @@ if __name__ == '__main__':
         loss = cross_entropy + l2_loss
 
         # Optimizer.
-        optimizer = tf.train.GradientDescentOptimizer(0.00001).minimize(loss)
+        optimizer = tf.train.MomentumOptimizer(0.00001, 0.002).minimize(loss)
 
         # Predictions for the training, validation, and test data.
         prediction = tf.nn.softmax(logits)
@@ -156,6 +154,8 @@ if __name__ == '__main__':
                 n += batch_data.shape[0]
                 feed_dict = {tf_train_dataset: batch_data, tf_train_labels: batch_labels}
                 if train:
+                    # Dropout
+                    tf_keep_proba.assign(0.65, use_locking=True)
                     # Include optimization op because we're training
                     _, l, predictions = session.run(
                         [optimizer,
@@ -163,6 +163,8 @@ if __name__ == '__main__':
                          prediction,
                          ], feed_dict=feed_dict)
                 else:
+                    # No dropout
+                    tf_keep_proba.assign(1, use_locking=True)
                     # Don't run the optimization op because we're testing not training
                     l, predictions = session.run([cross_entropy, prediction, ], feed_dict=feed_dict)
 

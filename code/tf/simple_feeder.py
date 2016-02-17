@@ -93,6 +93,8 @@ class Feeder(object):
         :param set: 'test', 'train' or 'valid'
         :return: A generator
         '''
+        self.dataset[set], self.labels[set] = randomize(self.dataset[set], self.labels[set])
+
         offset = 0
         while offset < self.dataset[set].shape[0]:
             i = range(offset, offset + batch_size)
