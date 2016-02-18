@@ -143,7 +143,7 @@ if __name__ == '__main__':
             :return: None
             '''
 
-            start = time.clock()
+            start = time.time()
             print "%s Starting %s epoch" % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), data)
             # number of data points
             n = 0
@@ -178,7 +178,7 @@ if __name__ == '__main__':
             print 'Average cross entropy per observation %.3f' % (total_cross_entropy/n)
 
 
-            end = time.clock()
+            end = time.time()
 
             print 'num observations: %i' % n
             print 'Total time taken: {} s'.format(end-start)
@@ -201,7 +201,7 @@ if __name__ == '__main__':
             # op and because the validation dataset is smaller.
             run_epoch(session, data='valid', train=False)
             if step < 0:
-                tf_step_size.assign(tf_step_size.value() * 2, use_locking=True)
+                tf_step_size.assign(tf_step_size.eval() * 2, use_locking=True)
             else:
-                tf_step_size.assign(tf_step_size.value() * 0.9, use_locking=True)
+                tf_step_size.assign(tf_step_size.eval() * 0.9, use_locking=True)
         run_epoch(session, data='test', train=False)
