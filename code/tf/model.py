@@ -16,7 +16,7 @@ layer3_stride = 1
 layer1_depth = 16
 layer2_depth = 24
 layer3_depth = 24
-num_hidden = 256
+num_hidden = 384
 # MOVING_AVERAGE_DECAY = 0.999
 
 
@@ -67,11 +67,11 @@ if __name__ == '__main__':
             [num_hidden, num_classes], stddev=0.1))
         layer5_biases = tf.Variable(tf.constant(1.0, shape=[num_classes]))
 
-        layer1_weight_decay = 0.0005
-        layer2_weight_decay = 0.0005
-        layer3_weight_decay = 0.0005
-        layer4_weight_decay = 0.001
-        layer5_weight_decay = 0.001
+        layer1_weight_decay = 0.00005
+        layer2_weight_decay = 0.00005
+        layer3_weight_decay = 0.00005
+        layer4_weight_decay = 0.0001
+        layer5_weight_decay = 0.0001
 
         # Track the moving averages of all trainable variables.
         # variable_averages = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY)
@@ -115,7 +115,7 @@ if __name__ == '__main__':
 
         # Training computation.
         logits = inference(tf_train_dataset)
-        cross_entropy = tf.reduce_sum(
+        cross_entropy = tf.reduce_mean(
             tf.nn.softmax_cross_entropy_with_logits(logits, tf_train_labels))
 
         l2_loss = (layer1_weight_decay * tf.nn.l2_loss(layer1_weights)
@@ -127,7 +127,8 @@ if __name__ == '__main__':
         loss = cross_entropy + l2_loss
 
         # Optimizer.
-        optimizer = tf.train.MomentumOptimizer(0.00001, 0.002).minimize(loss)
+        tf_step_size = tf.Variable(0.00001, trainable=False)
+        optimizer = tf.train.GradientDescentOptimizer(tf_step_size).minimize(loss)
 
         # Predictions for the training, validation, and test data.
         prediction = tf.nn.softmax(logits)
@@ -143,6 +144,7 @@ if __name__ == '__main__':
             '''
 
             start = time.clock()
+            print "%s Starting %s epoch" % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), data)
             # number of data points
             n = 0
             # cross entropy combines additively
@@ -168,17 +170,19 @@ if __name__ == '__main__':
                     # Don't run the optimization op because we're testing not training
                     l, predictions = session.run([cross_entropy, prediction, ], feed_dict=feed_dict)
 
-                total_cross_entropy += l
+                total_cross_entropy += l * batch_data.shape[0]
                 correct += np.sum(np.argmax(predictions, 1) == np.argmax(batch_labels, 1))
+
+            print "%s Completed %s epoch" % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), data)
+            print "Accuracy: %.1f" % (correct/n * 100)
+            print 'Average cross entropy per observation %.3f' % (total_cross_entropy/n)
+
 
             end = time.clock()
 
-            print "%s Completed epoch of %s data set" % (strftime("%Y-%m-%d %H:%M:%S", gmtime()), data)
-            print "Accuracy: %.1f" % (correct/n * 100)
-            print 'Average cross entropy per observation %.3f' % (total_cross_entropy/n)
-            print 'Total time taken: %.1f s' % (end-start)
             print 'num observations: %i' % n
-            print 'Time per image: %.2f ms\n' % ((end-start) / n * 1000)
+            print 'Total time taken: {} s'.format(end-start)
+            print 'Time per image: {} ms\n'.format((end-start) / n * 1000)
 
     num_steps = 200
 
@@ -191,9 +195,13 @@ if __name__ == '__main__':
 
         tf.initialize_all_variables().run()
         print "Initialized"
-        for step in xrange(num_steps):
+        for step in xrange(-4, num_steps):
             run_epoch(session, data='train', train=True)
             # The validation epoch is much faster because the optimization op is the most expensive
             # op and because the validation dataset is smaller.
             run_epoch(session, data='valid', train=False)
+            if step < 0:
+                tf_step_size.assign(tf_step_size.value() * 2, use_locking=True)
+            else:
+                tf_step_size.assign(tf_step_size.value() * 0.9, use_locking=True)
         run_epoch(session, data='test', train=False)
