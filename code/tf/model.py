@@ -5,19 +5,25 @@ from constants import batch_size, image_size, num_channels, num_classes
 from simple_feeder import Feeder
 from time import gmtime, strftime
 import time
+import math
 
 layer1_patch_size = 7
 layer1_stride = 2
 layer2_patch_size = 5
 layer2_stride = 1
-layer3_patch_size = 3
+layer3_patch_size = 5
 layer3_stride = 1
 
-layer1_depth = 16
-layer2_depth = 24
-layer3_depth = 24
-num_hidden = 384
-# MOVING_AVERAGE_DECAY = 0.999
+layer1_depth = 32
+layer2_depth = 32
+layer3_depth = 32
+num_hidden = 512
+keep_proba = 0.6
+
+sigmoid = tf.nn.elu
+
+moving_average = True
+MOVING_AVERAGE_DECAY = 0.999
 
 
 def get_var(v, averaged):
@@ -28,10 +34,10 @@ def get_var(v, averaged):
     :param averaged: true to return the moving average, false to return the current version
     :return: tf variable
     '''
-    # if averaged:
-    #     return variable_averages.average(v)
-    # else:
-    #     return v
+    if averaged and moving_average:
+        return variable_averages.average(v)
+    else:
+        return v
 
     # No averaging at the moment
     return v
@@ -43,9 +49,9 @@ if __name__ == '__main__':
 
     with graph.as_default():
         # Input data.
-        tf_train_dataset = tf.placeholder(
+        tf_dataset = tf.placeholder(
             tf.float32, shape=(batch_size, image_size, image_size, num_channels))
-        tf_train_labels = tf.placeholder(tf.float32, shape=(batch_size, num_classes))
+        tf_labels = tf.placeholder(tf.float32, shape=(batch_size, num_classes))
 
         # Variables.
         layer1_weights = tf.Variable(tf.truncated_normal(
@@ -61,7 +67,7 @@ if __name__ == '__main__':
         layer3_biases = tf.Variable(tf.constant(1.0, shape=[layer3_depth]))
 
         layer4_weights = tf.Variable(tf.truncated_normal(
-            [1176, num_hidden], stddev=0.1))  # TODO math
+            [int(math.ceil(math.ceil(image_size / 4) / 4) ** 2 * layer3_depth), num_hidden], stddev=0.1))
         layer4_biases = tf.Variable(tf.constant(1.0, shape=[num_hidden]))
         layer5_weights = tf.Variable(tf.truncated_normal(
             [num_hidden, num_classes], stddev=0.1))
@@ -94,29 +100,34 @@ if __name__ == '__main__':
             b5 = get_var(layer5_biases, averaged)
 
             conv = tf.nn.conv2d(data, w1, [1, layer1_stride, layer1_stride, 1], padding='SAME')
-            hidden = tf.nn.relu(conv + b1)
+            hidden = sigmoid(conv + b1)
             pool = tf.nn.max_pool(hidden, ksize=[1, 2, 2, 1],
                                   strides=[1, 2, 2, 1], padding='SAME')
             conv = tf.nn.conv2d(pool, w2, [1, 1, 1, 1], padding='SAME')
-            hidden = tf.nn.relu(conv + b2)
+            hidden = sigmoid(conv + b2)
             pool = tf.nn.max_pool(hidden, ksize=[1, 2, 2, 1],
                                   strides=[1, 2, 2, 1], padding='SAME')
             conv = tf.nn.conv2d(pool, w3, [1, 1, 1, 1], padding='SAME')
-            hidden = tf.nn.relu(conv + b3)
+            hidden = sigmoid(conv + b3)
             pool = tf.nn.max_pool(hidden, ksize=[1, 2, 2, 1],
                                   strides=[1, 2, 2, 1], padding='SAME')
 
             shape = pool.get_shape().as_list()
             reshape = tf.reshape(pool, [shape[0], shape[1] * shape[2] * shape[3]])
-            hidden = tf.nn.relu(tf.matmul(reshape, w4) + b4)
+            hidden = sigmoid(tf.matmul(reshape, w4) + b4)
             dropout = tf.nn.dropout(hidden, tf_keep_proba)
             return tf.matmul(dropout, w5) + b5
 
 
         # Training computation.
-        logits = inference(tf_train_dataset)
-        cross_entropy = tf.reduce_mean(
-            tf.nn.softmax_cross_entropy_with_logits(logits, tf_train_labels))
+        train_logits = inference(tf_dataset)
+        test_logits = inference(tf_dataset)
+
+        train_cross_entropy = tf.reduce_mean(
+            tf.nn.softmax_cross_entropy_with_logits(train_logits, tf_labels))
+
+        test_cross_entropy = tf.reduce_mean(
+            tf.nn.softmax_cross_entropy_with_logits(test_logits, tf_labels))
 
         l2_loss = (layer1_weight_decay * tf.nn.l2_loss(layer1_weights)
                    + layer2_weight_decay * tf.nn.l2_loss(layer2_weights)
@@ -124,14 +135,27 @@ if __name__ == '__main__':
                    + layer4_weight_decay * tf.nn.l2_loss(layer4_weights)
                    + layer5_weight_decay * tf.nn.l2_loss(layer5_weights))
 
-        loss = cross_entropy + l2_loss
+        loss = train_cross_entropy + l2_loss
 
         # Optimizer.
         tf_step_size = tf.Variable(0.00001, trainable=False)
-        optimizer = tf.train.GradientDescentOptimizer(tf_step_size).minimize(loss)
+        optimizer_op = tf.train.GradientDescentOptimizer(tf_step_size).minimize(loss)
 
         # Predictions for the training, validation, and test data.
-        prediction = tf.nn.softmax(logits)
+        train_prediction = tf.nn.softmax(train_logits)
+        test_prediction = tf.nn.softmax(test_logits)
+
+        # Create an ExponentialMovingAverage object
+        variable_averages = tf.train.ExponentialMovingAverage(decay=MOVING_AVERAGE_DECAY)
+
+        # Create the shadow variables, and add ops to maintain moving averages
+        # of var0 and var1.
+        maintain_averages_op = variable_averages.apply(tf.trainable_variables())
+
+        # Create an op that will update the moving averages after each training
+        # step.  This is what we will use in place of the usual training op.
+        with tf.control_dependencies([optimizer_op]):
+            training_op = tf.group(maintain_averages_op)
 
 
         def run_epoch(session, data='valid', train=False):
@@ -154,21 +178,21 @@ if __name__ == '__main__':
 
             for batch_data, batch_labels in feeder.epoch(data):
                 n += batch_data.shape[0]
-                feed_dict = {tf_train_dataset: batch_data, tf_train_labels: batch_labels}
+                feed_dict = {tf_dataset: batch_data, tf_labels: batch_labels}
                 if train:
                     # Dropout
-                    tf_keep_proba.assign(0.65, use_locking=True)
+                    tf_keep_proba.assign(keep_proba, use_locking=True)
                     # Include optimization op because we're training
                     _, l, predictions = session.run(
-                        [optimizer,
-                         cross_entropy,
-                         prediction,
+                        [training_op,
+                         train_cross_entropy,
+                         train_prediction,
                          ], feed_dict=feed_dict)
                 else:
                     # No dropout
                     tf_keep_proba.assign(1, use_locking=True)
                     # Don't run the optimization op because we're testing not training
-                    l, predictions = session.run([cross_entropy, prediction, ], feed_dict=feed_dict)
+                    l, predictions = session.run([test_cross_entropy, test_prediction, ], feed_dict=feed_dict)
 
                 total_cross_entropy += l * batch_data.shape[0]
                 correct += np.sum(np.argmax(predictions, 1) == np.argmax(batch_labels, 1))
@@ -184,7 +208,7 @@ if __name__ == '__main__':
             print 'Total time taken: {} s'.format(end-start)
             print 'Time per image: {} ms\n'.format((end-start) / n * 1000)
 
-    num_steps = 200
+    num_steps = 500
 
     with tf.Session(graph=graph) as session:
         # Friday Goals:
@@ -203,5 +227,5 @@ if __name__ == '__main__':
             if step < 0:
                 tf_step_size.assign(tf_step_size.eval() * 2, use_locking=True)
             else:
-                tf_step_size.assign(tf_step_size.eval() * 0.9, use_locking=True)
+                tf_step_size.assign(tf_step_size.eval() * 0.98, use_locking=True)
         run_epoch(session, data='test', train=False)
