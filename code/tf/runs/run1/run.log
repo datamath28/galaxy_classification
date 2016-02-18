@@ -1,0 +1,1261 @@
+I tensorflow/core/common_runtime/local_device.cc:25] Local device intra op parallelism threads: 8
+I tensorflow/stream_executor/cuda/cuda_gpu_executor.cc:888] successful NUMA node read from SysFS had negative value (-1), but there must be at least one NUMA node, so returning NUMA node zero
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:88] Found device 0 with properties: 
+name: GRID K520
+major: 3 minor: 0 memoryClockRate (GHz) 0.797
+pciBusID 0000:00:03.0
+Total memory: 4.00GiB
+Free memory: 3.95GiB
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:112] DMA: 0 
+I tensorflow/core/common_runtime/gpu/gpu_init.cc:122] 0:   Y 
+I tensorflow/core/common_runtime/gpu/gpu_device.cc:644] Creating TensorFlow device (/gpu:0) -> (device: 0, name: GRID K520, pci bus id: 0000:00:03.0)
+I tensorflow/core/common_runtime/gpu/gpu_region_allocator.cc:47] Setting region size to 3927400448
+I tensorflow/core/common_runtime/direct_session.cc:45] Direct session inter op parallelism threads: 8
+Loading data into memory...
+Initialized
+2016-02-16 22:55:06 Completed epoch of train data set
+Accuracy: 36.2
+Average cross entropy per observation 12.917
+Total time taken: 134.3 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-16 22:55:09 Completed epoch of valid data set
+Accuracy: 39.1
+Average cross entropy per observation 1.649
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 22:57:23 Completed epoch of train data set
+Accuracy: 38.2
+Average cross entropy per observation 1.543
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 22:57:26 Completed epoch of valid data set
+Accuracy: 38.2
+Average cross entropy per observation 1.539
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 22:59:40 Completed epoch of train data set
+Accuracy: 38.4
+Average cross entropy per observation 1.398
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 22:59:43 Completed epoch of valid data set
+Accuracy: 38.6
+Average cross entropy per observation 1.390
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:01:57 Completed epoch of train data set
+Accuracy: 38.5
+Average cross entropy per observation 1.293
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:02:00 Completed epoch of valid data set
+Accuracy: 37.5
+Average cross entropy per observation 1.301
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:04:14 Completed epoch of train data set
+Accuracy: 39.0
+Average cross entropy per observation 1.210
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:04:17 Completed epoch of valid data set
+Accuracy: 37.3
+Average cross entropy per observation 1.252
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:06:31 Completed epoch of train data set
+Accuracy: 39.7
+Average cross entropy per observation 1.161
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:06:34 Completed epoch of valid data set
+Accuracy: 38.6
+Average cross entropy per observation 1.208
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:08:48 Completed epoch of train data set
+Accuracy: 39.3
+Average cross entropy per observation 1.131
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:08:51 Completed epoch of valid data set
+Accuracy: 38.9
+Average cross entropy per observation 1.155
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:11:05 Completed epoch of train data set
+Accuracy: 39.6
+Average cross entropy per observation 1.101
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:11:08 Completed epoch of valid data set
+Accuracy: 38.8
+Average cross entropy per observation 1.128
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:13:22 Completed epoch of train data set
+Accuracy: 40.1
+Average cross entropy per observation 1.084
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:13:25 Completed epoch of valid data set
+Accuracy: 39.7
+Average cross entropy per observation 1.119
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.15 ms
+
+2016-02-16 23:15:39 Completed epoch of train data set
+Accuracy: 40.0
+Average cross entropy per observation 1.074
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:15:42 Completed epoch of valid data set
+Accuracy: 39.2
+Average cross entropy per observation 1.101
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:17:56 Completed epoch of train data set
+Accuracy: 40.5
+Average cross entropy per observation 1.059
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-16 23:18:00 Completed epoch of valid data set
+Accuracy: 39.8
+Average cross entropy per observation 1.094
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:20:13 Completed epoch of train data set
+Accuracy: 39.7
+Average cross entropy per observation 1.055
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:20:17 Completed epoch of valid data set
+Accuracy: 39.1
+Average cross entropy per observation 1.090
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:22:30 Completed epoch of train data set
+Accuracy: 40.7
+Average cross entropy per observation 1.046
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-16 23:22:34 Completed epoch of valid data set
+Accuracy: 39.6
+Average cross entropy per observation 1.077
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:24:47 Completed epoch of train data set
+Accuracy: 41.3
+Average cross entropy per observation 1.039
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-16 23:24:51 Completed epoch of valid data set
+Accuracy: 39.4
+Average cross entropy per observation 1.077
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:27:04 Completed epoch of train data set
+Accuracy: 42.0
+Average cross entropy per observation 1.033
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-16 23:27:08 Completed epoch of valid data set
+Accuracy: 39.0
+Average cross entropy per observation 1.072
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.15 ms
+
+2016-02-16 23:29:21 Completed epoch of train data set
+Accuracy: 42.0
+Average cross entropy per observation 1.025
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:29:25 Completed epoch of valid data set
+Accuracy: 40.3
+Average cross entropy per observation 1.053
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:31:38 Completed epoch of train data set
+Accuracy: 42.5
+Average cross entropy per observation 1.019
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-16 23:31:42 Completed epoch of valid data set
+Accuracy: 40.7
+Average cross entropy per observation 1.036
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:33:55 Completed epoch of train data set
+Accuracy: 43.7
+Average cross entropy per observation 1.010
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:33:59 Completed epoch of valid data set
+Accuracy: 41.0
+Average cross entropy per observation 1.065
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:36:12 Completed epoch of train data set
+Accuracy: 43.8
+Average cross entropy per observation 1.006
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:36:16 Completed epoch of valid data set
+Accuracy: 40.3
+Average cross entropy per observation 1.085
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.15 ms
+
+2016-02-16 23:38:29 Completed epoch of train data set
+Accuracy: 44.5
+Average cross entropy per observation 1.002
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:38:33 Completed epoch of valid data set
+Accuracy: 40.6
+Average cross entropy per observation 1.109
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:40:46 Completed epoch of train data set
+Accuracy: 45.1
+Average cross entropy per observation 0.995
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:40:50 Completed epoch of valid data set
+Accuracy: 43.2
+Average cross entropy per observation 1.063
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:43:03 Completed epoch of train data set
+Accuracy: 45.5
+Average cross entropy per observation 0.993
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:43:07 Completed epoch of valid data set
+Accuracy: 42.7
+Average cross entropy per observation 1.042
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.15 ms
+
+2016-02-16 23:45:20 Completed epoch of train data set
+Accuracy: 45.5
+Average cross entropy per observation 0.991
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:45:24 Completed epoch of valid data set
+Accuracy: 42.6
+Average cross entropy per observation 1.056
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.15 ms
+
+2016-02-16 23:47:38 Completed epoch of train data set
+Accuracy: 46.1
+Average cross entropy per observation 0.987
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:47:41 Completed epoch of valid data set
+Accuracy: 43.8
+Average cross entropy per observation 1.042
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:49:55 Completed epoch of train data set
+Accuracy: 46.5
+Average cross entropy per observation 0.982
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:49:58 Completed epoch of valid data set
+Accuracy: 44.2
+Average cross entropy per observation 1.022
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:52:12 Completed epoch of train data set
+Accuracy: 46.7
+Average cross entropy per observation 0.981
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:52:15 Completed epoch of valid data set
+Accuracy: 43.0
+Average cross entropy per observation 1.065
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:54:29 Completed epoch of train data set
+Accuracy: 46.8
+Average cross entropy per observation 0.980
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-16 23:54:32 Completed epoch of valid data set
+Accuracy: 46.6
+Average cross entropy per observation 0.987
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:56:46 Completed epoch of train data set
+Accuracy: 47.5
+Average cross entropy per observation 0.976
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:56:49 Completed epoch of valid data set
+Accuracy: 43.9
+Average cross entropy per observation 1.024
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-16 23:59:03 Completed epoch of train data set
+Accuracy: 47.4
+Average cross entropy per observation 0.974
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-16 23:59:06 Completed epoch of valid data set
+Accuracy: 43.7
+Average cross entropy per observation 1.048
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:01:20 Completed epoch of train data set
+Accuracy: 47.5
+Average cross entropy per observation 0.976
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:01:23 Completed epoch of valid data set
+Accuracy: 41.1
+Average cross entropy per observation 1.112
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:03:37 Completed epoch of train data set
+Accuracy: 47.5
+Average cross entropy per observation 0.973
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 00:03:40 Completed epoch of valid data set
+Accuracy: 44.9
+Average cross entropy per observation 1.033
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:05:54 Completed epoch of train data set
+Accuracy: 47.3
+Average cross entropy per observation 0.972
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 00:05:57 Completed epoch of valid data set
+Accuracy: 41.4
+Average cross entropy per observation 1.091
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:08:11 Completed epoch of train data set
+Accuracy: 48.0
+Average cross entropy per observation 0.971
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 00:08:15 Completed epoch of valid data set
+Accuracy: 46.8
+Average cross entropy per observation 0.994
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:10:28 Completed epoch of train data set
+Accuracy: 48.3
+Average cross entropy per observation 0.965
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 00:10:32 Completed epoch of valid data set
+Accuracy: 47.6
+Average cross entropy per observation 0.973
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:12:45 Completed epoch of train data set
+Accuracy: 48.1
+Average cross entropy per observation 0.965
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:12:49 Completed epoch of valid data set
+Accuracy: 44.7
+Average cross entropy per observation 1.021
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.15 ms
+
+2016-02-17 00:15:02 Completed epoch of train data set
+Accuracy: 48.3
+Average cross entropy per observation 0.966
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:15:06 Completed epoch of valid data set
+Accuracy: 48.9
+Average cross entropy per observation 0.963
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:17:19 Completed epoch of train data set
+Accuracy: 48.7
+Average cross entropy per observation 0.960
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:17:23 Completed epoch of valid data set
+Accuracy: 48.4
+Average cross entropy per observation 0.965
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:19:36 Completed epoch of train data set
+Accuracy: 48.6
+Average cross entropy per observation 0.963
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 00:19:40 Completed epoch of valid data set
+Accuracy: 48.3
+Average cross entropy per observation 0.966
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:21:53 Completed epoch of train data set
+Accuracy: 49.4
+Average cross entropy per observation 0.957
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 00:21:57 Completed epoch of valid data set
+Accuracy: 49.0
+Average cross entropy per observation 0.965
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:24:10 Completed epoch of train data set
+Accuracy: 49.2
+Average cross entropy per observation 0.956
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:24:14 Completed epoch of valid data set
+Accuracy: 49.5
+Average cross entropy per observation 0.952
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:26:27 Completed epoch of train data set
+Accuracy: 49.0
+Average cross entropy per observation 0.963
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 00:26:31 Completed epoch of valid data set
+Accuracy: 50.4
+Average cross entropy per observation 0.951
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:28:44 Completed epoch of train data set
+Accuracy: 49.4
+Average cross entropy per observation 0.956
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:28:48 Completed epoch of valid data set
+Accuracy: 46.7
+Average cross entropy per observation 0.974
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:31:01 Completed epoch of train data set
+Accuracy: 49.7
+Average cross entropy per observation 0.954
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:31:05 Completed epoch of valid data set
+Accuracy: 49.1
+Average cross entropy per observation 0.963
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:33:18 Completed epoch of train data set
+Accuracy: 49.0
+Average cross entropy per observation 0.957
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 00:33:22 Completed epoch of valid data set
+Accuracy: 51.6
+Average cross entropy per observation 0.951
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.15 ms
+
+2016-02-17 00:35:35 Completed epoch of train data set
+Accuracy: 50.0
+Average cross entropy per observation 0.949
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:35:39 Completed epoch of valid data set
+Accuracy: 50.7
+Average cross entropy per observation 0.948
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.15 ms
+
+2016-02-17 00:37:53 Completed epoch of train data set
+Accuracy: 49.1
+Average cross entropy per observation 0.958
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:37:56 Completed epoch of valid data set
+Accuracy: 51.4
+Average cross entropy per observation 0.950
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:40:10 Completed epoch of train data set
+Accuracy: 49.9
+Average cross entropy per observation 0.952
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:40:13 Completed epoch of valid data set
+Accuracy: 50.0
+Average cross entropy per observation 0.952
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:42:27 Completed epoch of train data set
+Accuracy: 49.7
+Average cross entropy per observation 0.953
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:42:30 Completed epoch of valid data set
+Accuracy: 51.9
+Average cross entropy per observation 0.942
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:44:44 Completed epoch of train data set
+Accuracy: 50.2
+Average cross entropy per observation 0.950
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:44:47 Completed epoch of valid data set
+Accuracy: 50.8
+Average cross entropy per observation 0.947
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:47:01 Completed epoch of train data set
+Accuracy: 49.8
+Average cross entropy per observation 0.950
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:47:04 Completed epoch of valid data set
+Accuracy: 52.4
+Average cross entropy per observation 0.946
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:49:18 Completed epoch of train data set
+Accuracy: 50.4
+Average cross entropy per observation 0.947
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 00:49:21 Completed epoch of valid data set
+Accuracy: 53.1
+Average cross entropy per observation 0.934
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:51:35 Completed epoch of train data set
+Accuracy: 49.9
+Average cross entropy per observation 0.949
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:51:38 Completed epoch of valid data set
+Accuracy: 52.0
+Average cross entropy per observation 0.942
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.15 ms
+
+2016-02-17 00:53:52 Completed epoch of train data set
+Accuracy: 50.3
+Average cross entropy per observation 0.946
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:53:55 Completed epoch of valid data set
+Accuracy: 53.0
+Average cross entropy per observation 0.939
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:56:09 Completed epoch of train data set
+Accuracy: 50.7
+Average cross entropy per observation 0.945
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:56:12 Completed epoch of valid data set
+Accuracy: 52.6
+Average cross entropy per observation 0.938
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 00:58:26 Completed epoch of train data set
+Accuracy: 50.6
+Average cross entropy per observation 0.942
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 00:58:29 Completed epoch of valid data set
+Accuracy: 53.1
+Average cross entropy per observation 0.939
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:00:43 Completed epoch of train data set
+Accuracy: 50.7
+Average cross entropy per observation 0.944
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:00:46 Completed epoch of valid data set
+Accuracy: 52.1
+Average cross entropy per observation 0.938
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:03:00 Completed epoch of train data set
+Accuracy: 51.0
+Average cross entropy per observation 0.941
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:03:03 Completed epoch of valid data set
+Accuracy: 53.4
+Average cross entropy per observation 0.935
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:05:17 Completed epoch of train data set
+Accuracy: 50.9
+Average cross entropy per observation 0.941
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 01:05:20 Completed epoch of valid data set
+Accuracy: 51.9
+Average cross entropy per observation 0.935
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:07:34 Completed epoch of train data set
+Accuracy: 50.9
+Average cross entropy per observation 0.941
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 01:07:38 Completed epoch of valid data set
+Accuracy: 52.7
+Average cross entropy per observation 0.936
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.15 ms
+
+2016-02-17 01:09:51 Completed epoch of train data set
+Accuracy: 51.4
+Average cross entropy per observation 0.937
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:09:55 Completed epoch of valid data set
+Accuracy: 52.0
+Average cross entropy per observation 0.933
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:12:08 Completed epoch of train data set
+Accuracy: 52.1
+Average cross entropy per observation 0.933
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:12:12 Completed epoch of valid data set
+Accuracy: 49.0
+Average cross entropy per observation 0.963
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:14:25 Completed epoch of train data set
+Accuracy: 51.6
+Average cross entropy per observation 0.936
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:14:29 Completed epoch of valid data set
+Accuracy: 54.0
+Average cross entropy per observation 0.923
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:16:42 Completed epoch of train data set
+Accuracy: 51.4
+Average cross entropy per observation 0.938
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 01:16:46 Completed epoch of valid data set
+Accuracy: 52.8
+Average cross entropy per observation 0.928
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:18:59 Completed epoch of train data set
+Accuracy: 51.5
+Average cross entropy per observation 0.934
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:19:03 Completed epoch of valid data set
+Accuracy: 53.4
+Average cross entropy per observation 0.933
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:21:16 Completed epoch of train data set
+Accuracy: 51.8
+Average cross entropy per observation 0.934
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:21:20 Completed epoch of valid data set
+Accuracy: 52.9
+Average cross entropy per observation 0.924
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:23:33 Completed epoch of train data set
+Accuracy: 52.3
+Average cross entropy per observation 0.927
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:23:37 Completed epoch of valid data set
+Accuracy: 53.6
+Average cross entropy per observation 0.920
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:25:50 Completed epoch of train data set
+Accuracy: 51.4
+Average cross entropy per observation 0.934
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:25:54 Completed epoch of valid data set
+Accuracy: 54.5
+Average cross entropy per observation 0.918
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:28:07 Completed epoch of train data set
+Accuracy: 52.4
+Average cross entropy per observation 0.930
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:28:11 Completed epoch of valid data set
+Accuracy: 53.3
+Average cross entropy per observation 0.926
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:30:24 Completed epoch of train data set
+Accuracy: 51.8
+Average cross entropy per observation 0.930
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:30:28 Completed epoch of valid data set
+Accuracy: 54.7
+Average cross entropy per observation 0.921
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:32:41 Completed epoch of train data set
+Accuracy: 52.3
+Average cross entropy per observation 0.927
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:32:45 Completed epoch of valid data set
+Accuracy: 53.2
+Average cross entropy per observation 0.924
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:34:58 Completed epoch of train data set
+Accuracy: 53.0
+Average cross entropy per observation 0.923
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:35:02 Completed epoch of valid data set
+Accuracy: 51.8
+Average cross entropy per observation 0.949
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:37:16 Completed epoch of train data set
+Accuracy: 52.7
+Average cross entropy per observation 0.926
+Total time taken: 134.3 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 01:37:19 Completed epoch of valid data set
+Accuracy: 52.3
+Average cross entropy per observation 0.929
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:39:33 Completed epoch of train data set
+Accuracy: 52.6
+Average cross entropy per observation 0.925
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 01:39:36 Completed epoch of valid data set
+Accuracy: 51.7
+Average cross entropy per observation 0.935
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:41:50 Completed epoch of train data set
+Accuracy: 52.7
+Average cross entropy per observation 0.925
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:41:53 Completed epoch of valid data set
+Accuracy: 53.6
+Average cross entropy per observation 0.928
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:44:07 Completed epoch of train data set
+Accuracy: 53.0
+Average cross entropy per observation 0.922
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:44:10 Completed epoch of valid data set
+Accuracy: 53.0
+Average cross entropy per observation 0.928
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:46:24 Completed epoch of train data set
+Accuracy: 52.7
+Average cross entropy per observation 0.925
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:46:27 Completed epoch of valid data set
+Accuracy: 53.5
+Average cross entropy per observation 0.922
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:48:41 Completed epoch of train data set
+Accuracy: 53.4
+Average cross entropy per observation 0.919
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:48:44 Completed epoch of valid data set
+Accuracy: 54.4
+Average cross entropy per observation 0.913
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:50:58 Completed epoch of train data set
+Accuracy: 53.2
+Average cross entropy per observation 0.922
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:51:01 Completed epoch of valid data set
+Accuracy: 54.1
+Average cross entropy per observation 0.923
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:53:15 Completed epoch of train data set
+Accuracy: 53.1
+Average cross entropy per observation 0.918
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 01:53:18 Completed epoch of valid data set
+Accuracy: 54.9
+Average cross entropy per observation 0.914
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:55:32 Completed epoch of train data set
+Accuracy: 53.3
+Average cross entropy per observation 0.917
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 01:55:35 Completed epoch of valid data set
+Accuracy: 54.9
+Average cross entropy per observation 0.915
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 01:57:49 Completed epoch of train data set
+Accuracy: 53.5
+Average cross entropy per observation 0.920
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 01:57:52 Completed epoch of valid data set
+Accuracy: 55.1
+Average cross entropy per observation 0.914
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 02:00:06 Completed epoch of train data set
+Accuracy: 54.3
+Average cross entropy per observation 0.912
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 02:00:09 Completed epoch of valid data set
+Accuracy: 53.1
+Average cross entropy per observation 0.930
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 02:02:23 Completed epoch of train data set
+Accuracy: 53.1
+Average cross entropy per observation 0.919
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 02:02:26 Completed epoch of valid data set
+Accuracy: 53.7
+Average cross entropy per observation 0.925
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 02:04:40 Completed epoch of train data set
+Accuracy: 53.9
+Average cross entropy per observation 0.913
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 02:04:43 Completed epoch of valid data set
+Accuracy: 52.7
+Average cross entropy per observation 0.938
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 02:06:57 Completed epoch of train data set
+Accuracy: 53.8
+Average cross entropy per observation 0.915
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 02:07:00 Completed epoch of valid data set
+Accuracy: 54.6
+Average cross entropy per observation 0.912
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 02:09:14 Completed epoch of train data set
+Accuracy: 54.1
+Average cross entropy per observation 0.911
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 02:09:18 Completed epoch of valid data set
+Accuracy: 55.7
+Average cross entropy per observation 0.903
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 02:11:31 Completed epoch of train data set
+Accuracy: 54.5
+Average cross entropy per observation 0.906
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.58 ms
+
+2016-02-17 02:11:35 Completed epoch of valid data set
+Accuracy: 54.8
+Average cross entropy per observation 0.917
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+
+2016-02-17 02:13:48 Completed epoch of train data set
+Accuracy: 54.0
+Average cross entropy per observation 0.914
+Total time taken: 134.1 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 02:13:52 Completed epoch of valid data set
+Accuracy: 54.8
+Average cross entropy per observation 0.916
+Total time taken: 3.5 s
+num observations: 3072
+Time per image: 1.15 ms
+
+2016-02-17 02:16:05 Completed epoch of train data set
+Accuracy: 53.7
+Average cross entropy per observation 0.909
+Total time taken: 134.2 s
+num observations: 24064
+Time per image: 5.57 ms
+
+2016-02-17 02:16:09 Completed epoch of valid data set
+Accuracy: 55.2
+Average cross entropy per observation 0.915
+Total time taken: 3.6 s
+num observations: 3072
+Time per image: 1.16 ms
+

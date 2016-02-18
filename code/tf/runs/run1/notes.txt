@@ -1,0 +1,5 @@
+* Is it possible that the large batch size is hurting us?  We could be getting stuck in local mins.
+* We have updated the feeder to randomize, that may help.  
+* This is definitely going a lot slower than the local machine.  Despite the fact that we process an image 4x faster the local machine with 10x fewer samples improves much faster. 
+* Next run try reducing the batch size to the ballpark of 128 or 256.  Maybe the smaller batches are helping the local machine.
+* Need to save and then test with no dropout.
