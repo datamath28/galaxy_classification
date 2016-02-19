@@ -18,29 +18,12 @@ layer1_depth = 32
 layer2_depth = 32
 layer3_depth = 32
 num_hidden = 512
-keep_proba = 0.6
+keep_proba = 0.65
 
 sigmoid = tf.nn.elu
 
 moving_average = True
 MOVING_AVERAGE_DECAY = 0.999
-
-
-def get_var(v, averaged):
-    '''
-    Returns either the current version of the variable or the moving average version
-    depending on averaged
-    :param v: tf variable
-    :param averaged: true to return the moving average, false to return the current version
-    :return: tf variable
-    '''
-    if averaged and moving_average:
-        return variable_averages.average(v)
-    else:
-        return v
-
-    # No averaging at the moment
-    return v
 
 if __name__ == '__main__':
 
@@ -73,15 +56,30 @@ if __name__ == '__main__':
             [num_hidden, num_classes], stddev=0.1))
         layer5_biases = tf.Variable(tf.constant(1.0, shape=[num_classes]))
 
+        # Create an ExponentialMovingAverage object
+        variable_averages = tf.train.ExponentialMovingAverage(decay=MOVING_AVERAGE_DECAY)
+
+        # Create the shadow variables, and add ops to maintain moving averages
+        maintain_averages_op = variable_averages.apply(tf.trainable_variables())
+
+        def get_var(v, averaged):
+            '''
+            Returns either the current version of the variable or the moving average version
+            depending on averaged
+            :param v: tf variable
+            :param averaged: true to return the moving average, false to return the current version
+            :return: tf variable
+            '''
+            if averaged and moving_average:
+                return variable_averages.average(v)
+            else:
+                return v
+
         layer1_weight_decay = 0.00005
         layer2_weight_decay = 0.00005
         layer3_weight_decay = 0.00005
         layer4_weight_decay = 0.0001
         layer5_weight_decay = 0.0001
-
-        # Track the moving averages of all trainable variables.
-        # variable_averages = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY)
-        # variable_averages_op = variable_averages.apply(tf.trainable_variables())
 
         tf_keep_proba = tf.Variable(1., trainable=False)
 
@@ -121,7 +119,7 @@ if __name__ == '__main__':
 
         # Training computation.
         train_logits = inference(tf_dataset)
-        test_logits = inference(tf_dataset)
+        test_logits = inference(tf_dataset, averaged=True)
 
         train_cross_entropy = tf.reduce_mean(
             tf.nn.softmax_cross_entropy_with_logits(train_logits, tf_labels))
@@ -145,12 +143,6 @@ if __name__ == '__main__':
         train_prediction = tf.nn.softmax(train_logits)
         test_prediction = tf.nn.softmax(test_logits)
 
-        # Create an ExponentialMovingAverage object
-        variable_averages = tf.train.ExponentialMovingAverage(decay=MOVING_AVERAGE_DECAY)
-
-        # Create the shadow variables, and add ops to maintain moving averages
-        # of var0 and var1.
-        maintain_averages_op = variable_averages.apply(tf.trainable_variables())
 
         # Create an op that will update the moving averages after each training
         # step.  This is what we will use in place of the usual training op.
