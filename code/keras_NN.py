@@ -13,14 +13,18 @@ import read_images
 import get_labels
 import metrics
 import plots
+from keras.layers import Convolution2D, MaxPooling2D
+from keras.regularizers import l2
+from matplotlib.pyplot import imshow
 
 ''' Main pipeline script for creating neural net with keras and fitting it to image data
 output predictions for input data'''
 
 
 if __name__ == '__main__':
-    data = np.loadtxt('gal_pos_label.txt', delimiter=',')  	# columns are:  dr7objid,ra,dec,spiral,elliptical,uncertain 
-    gal_id = np.genfromtxt('gal_pos_label.txt', delimiter=',', dtype=int, usecols=[0])   
+    print "Loading Data"
+    data = np.loadtxt('../data/gal_pos_label.txt', delimiter=',')  	# columns are:  dr7objid,ra,dec,spiral,elliptical,uncertain
+    gal_id = np.genfromtxt('../data/gal_pos_label.txt', delimiter=',', dtype=int, usecols=[0])
     spiral = data[:,3]
     elliptical = data[:,4]
     uncertain = data[:,5]
@@ -32,44 +36,69 @@ if __name__ == '__main__':
     num_pix_cen = 10000
     # Get array of image pixels
     img_arr = read_images.make_img_arr(gal_arr, num_pix_cen, pix_func=read_images.get_pix_flat_cen)
+
     label_arr = get_labels.get_labels(gal_arr, spiral, elliptical, uncertain, img_arr)
     # Remove images with no data
-    img_arr = img_arr[~np.all(img_arr == 0, axis=1)]
-    gal_arr = gal_arr[~np.all(img_arr == 0, axis=1)]
-    
+    idx = ~np.all(img_arr == 0, axis=1)
+
+    img_arr = img_arr[idx]
+    label_arr = label_arr[idx]
+
+    # Make the data into 2d images
+    img_arr = img_arr.reshape((-1, 1, 100, 100))
+
+    print "test/train split"
     # Split data into train and test set
-    X_train, X_test, y_train, y_test, idx_train, idx_test = train_test_split(img_arr, label_arr, indices)
+    X_train, X_test, y_train, y_test = train_test_split(img_arr, label_arr)
+
+    print "scaling data"
     # Normalize
     X_train_norm = X_train/np.max(X_train)
-    X_test_norm = X_test/np.max(X_test)
-    
+    X_test_norm = X_test/np.max(X_train)
+
+    output_channels = y_train.shape[1]
+
+    print "building model"
     # Build the NN model one piece at a time
-    model = Sequential()            
-    # Define hidden layer: 10000 pixels in input, output dimension will have 512 nodes, initialize weights using uniform dist
-    model.add(Dense(512, input_dim=num_pix_cen, init='uniform'))    
+    model = Sequential()
+    model.add(Convolution2D(16, 3, 3,
+                            border_mode='valid',
+                            input_shape=(1, 100, 100),
+                            W_regularizer=l2(0.01)))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(0.3))
+    model.add(Flatten())
+    # Define hidden layer: 10000 pixels in input, output dimension will have 512 nodes,
+    # initialize weights using uniform dist
+    model.add(Dense(512), W_regularizer=l2(0.01))
     # Sigmoid activation
     model.add(Activation('sigmoid'))
     # Use 35% dropout on this layer for regularization to avoid overfitting
-    model.add(Dropout(0.35))
+    model.add(Dropout(0.4))
     # Define another layer with 512 nodes (input and output)
-    model.add(Dense(512, init='uniform'))
+    model.add(Dense(512, init='uniform', W_regularizer=l2(0.01)))
     # Sigmoid activation
     model.add(Activation('sigmoid'))
     # Use 35% dropout on this layer for regularization to avoid overfitting
-    model.add(Dropout(0.35))
+    model.add(Dropout(0.4))
     # Last layer (output) has 3 outputs with 512 inputs
-    model.add(Dense(y_train20.shape[1], init='uniform'))
+    model.add(Dense(output_channels, init='uniform'))
     # Activation function is softmax b/c it is the output layer
     model.add(Activation('softmax'))
 
     # Fit model
     # SGD does go through all data points but only uses a batch at a time, data gets shuffled after each epoch
     sgd = Adam()
+
+    print "compiling model"
     # Choose categorical_crossentropy as loss function b/c softmax was the activation function
     model.compile(loss='categorical_crossentropy', optimizer=Adam())
+
+    print "fitting model"
     # An epoch is one pass through the whole training data set, batch size is number of data points used for each iteration of gradient descent
     NN_fit = model.fit(X_train_norm, y_train, 
-          nb_epoch=20, 
+          nb_epoch=20,
           batch_size=150, 
           validation_data = (X_test_norm, y_test),
           show_accuracy = True, verbose=2)

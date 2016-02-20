@@ -9,13 +9,13 @@ def get_labels(gal_arr, spiral, elliptical, uncertain, img_arr):
     spiral, elliptical, and uncertain are arrays containing 1 or 0'''
 
     label_arr = np.zeros((img_arr.shape[0], 3))
-    for ix, gal in enumerate(gal_arr):    
+    for ix, gal in enumerate(gal_arr):
         pos = np.where(gal_arr == gal)
         label_arr[ix, 0] = spiral[pos[0][0]]
         label_arr[ix, 1] = elliptical[pos[0][0]]
         label_arr[ix, 2] = uncertain[pos[0][0]]
 
-	return label_arr
+    return label_arr
 
 
 def get_label_1D(label_arr):

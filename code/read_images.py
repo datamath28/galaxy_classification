@@ -1,4 +1,5 @@
 import numpy as np
+import os
 from scipy import misc
 
 
@@ -56,7 +57,7 @@ def make_img_arr(gal_arr, n_pix, pix_func=get_pix):
 
     img_arr = np.zeros((len(gal_arr), n_pix))
     for ix, gal in enumerate(gal_arr):
-        filename = "images/img_{0}.png".format(gal)    # get name of file using gal id
+        filename = "../images/img_{0}.png".format(gal)    # get name of file using gal id
         if os.path.exists(filename):    # make sure image exists
             img_arr[ix] = pix_func(filename)    # get pixels for that image
 
