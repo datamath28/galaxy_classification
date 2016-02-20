@@ -1,3 +1,4 @@
+from __future__ import division
 import numpy as np
 import os
 from scipy import misc
@@ -52,6 +53,9 @@ class Feeder(object):
         np.random.seed(133)
 
         randomized_dataset, randomized_labels = randomize(dataset, labels)
+
+        # scale the data
+        randomized_dataset = randomized_dataset / 255
 
         # Split into train, validation, test
         n = dataset.shape[0]
