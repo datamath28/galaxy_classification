@@ -7,6 +7,8 @@ from time import gmtime, strftime
 import time
 import math
 
+import sys
+
 layer1_patch_size = 7
 layer1_stride = 2
 layer2_patch_size = 5
@@ -220,4 +222,6 @@ if __name__ == '__main__':
                 tf_step_size.assign(tf_step_size.eval() * 2, use_locking=True)
             else:
                 tf_step_size.assign(tf_step_size.eval() * 0.98, use_locking=True)
+            sys.stdout.flush()
         run_epoch(session, data='test', train=False)
+        
