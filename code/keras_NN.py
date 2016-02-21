@@ -1,19 +1,16 @@
 import numpy as np
-import matplotlib.pyplot as plt
-import os
 from keras.models import Sequential
 from keras.layers.core import Dense, Dropout, Activation, Flatten
 from keras.optimizers import SGD, RMSprop, Adagrad, Adam, Adadelta
 from keras.preprocessing.image import ImageDataGenerator
-from keras.utils import np_utils
 from sklearn.cross_validation import train_test_split
-from scipy import misc
 from sklearn.metrics import roc_auc_score, roc_curve, classification_report, confusion_matrix
 import read_images
 import get_labels
 import metrics
 import plots
 from keras.layers import Convolution2D, MaxPooling2D
+from keras.layers.advanced_activations import ELU
 from keras.regularizers import l2
 from matplotlib.pyplot import imshow
 
@@ -61,27 +58,37 @@ if __name__ == '__main__':
     print "building model"
     # Build the NN model one piece at a time
     model = Sequential()
-    model.add(Convolution2D(32, 3, 3,
+    model.add(Convolution2D(24, 3, 3,
                             border_mode='valid',
                             input_shape=(1, 100, 100)))
-    model.add(Activation('relu'))
-    model.add(Convolution2D(32, 3, 3,
+    model.add(ELU())
+    model.add(Convolution2D(24, 3, 3,
                             border_mode='valid'))
-    model.add(Activation('relu'))
+    model.add(ELU())
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
+
+    model.add(Convolution2D(32, 3, 3,
+                            border_mode='valid'))
+    model.add(ELU())
+    model.add(Convolution2D(32, 3, 3,
+                            border_mode='valid'))
+    model.add(ELU())
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Dropout(0.25))
+
     model.add(Flatten())
     # Define hidden layer: 10000 pixels in input, output dimension will have 512 nodes,
     # initialize weights using uniform dist
     model.add(Dense(512))
     # Sigmoid activation
-    model.add(Activation('relu'))
+    model.add(ELU())
     # Use 35% dropout on this layer for regularization to avoid overfitting
     model.add(Dropout(0.35))
     # Define another layer with 512 nodes (input and output)
     model.add(Dense(512, init='uniform'))
     # Sigmoid activation
-    model.add(Activation('relu'))
+    model.add(ELU())
     # Use 35% dropout on this layer for regularization to avoid overfitting
     model.add(Dropout(0.35))
     # Last layer (output) has 3 outputs with 512 inputs
