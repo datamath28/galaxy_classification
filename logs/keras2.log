@@ -1,0 +1,9 @@
+2 conv layers 32
+1 2x2 max pool layer
+1 dropout 0.25
+fully connected 512
+dropout .35
+fully connected 512
+dropout .35
+out
+

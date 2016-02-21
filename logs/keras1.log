@@ -1,0 +1,143 @@
+2 convo layers 16
+1 max pool layer 2x2
+2 fully connected layers 512
+
+Using Theano backend.
+Using gpu device 0: GRID K520 (CNMeM is disabled, CuDNN not available)
+/usr/local/lib/python2.7/dist-packages/theano/tensor/signal/downsample.py:5: UserWarning: downsample module has been moved to the pool module.
+  warnings.warn("downsample module has been moved to the pool module.")
+Loading Data
+test/train split
+scaling data
+building model
+compiling model
+fitting model
+Epoch 1/100
+35s - loss: 0.9909 - acc: 0.4650 - val_loss: 0.8671 - val_acc: 0.5716
+Epoch 2/100
+35s - loss: 0.8583 - acc: 0.5787 - val_loss: 0.7801 - val_acc: 0.6314
+Epoch 3/100
+35s - loss: 0.8234 - acc: 0.6060 - val_loss: 0.7872 - val_acc: 0.6226
+Epoch 4/100
+35s - loss: 0.7927 - acc: 0.6177 - val_loss: 0.7363 - val_acc: 0.6472
+Epoch 5/100
+35s - loss: 0.7729 - acc: 0.6297 - val_loss: 0.7289 - val_acc: 0.6526
+Epoch 6/100
+35s - loss: 0.7603 - acc: 0.6415 - val_loss: 0.7125 - val_acc: 0.6602
+Epoch 7/100
+35s - loss: 0.7452 - acc: 0.6429 - val_loss: 0.7127 - val_acc: 0.6656
+Epoch 8/100
+35s - loss: 0.7372 - acc: 0.6511 - val_loss: 0.7055 - val_acc: 0.6646
+Epoch 9/100
+35s - loss: 0.7273 - acc: 0.6543 - val_loss: 0.7136 - val_acc: 0.6634
+Epoch 10/100
+35s - loss: 0.7126 - acc: 0.6602 - val_loss: 0.7142 - val_acc: 0.6686
+Epoch 11/100
+35s - loss: 0.7197 - acc: 0.6577 - val_loss: 0.7134 - val_acc: 0.6652
+Epoch 12/100
+36s - loss: 0.6971 - acc: 0.6711 - val_loss: 0.6774 - val_acc: 0.6810
+Epoch 13/100
+35s - loss: 0.6883 - acc: 0.6721 - val_loss: 0.6944 - val_acc: 0.6792
+Epoch 14/100
+36s - loss: 0.6903 - acc: 0.6761 - val_loss: 0.6639 - val_acc: 0.6892
+Epoch 15/100
+36s - loss: 0.6816 - acc: 0.6788 - val_loss: 0.6781 - val_acc: 0.6822
+Epoch 16/100
+36s - loss: 0.6766 - acc: 0.6758 - val_loss: 0.6662 - val_acc: 0.6852
+Epoch 17/100
+36s - loss: 0.6711 - acc: 0.6847 - val_loss: 0.6645 - val_acc: 0.6926
+Epoch 18/100
+36s - loss: 0.6604 - acc: 0.6884 - val_loss: 0.6524 - val_acc: 0.6932
+Epoch 19/100
+36s - loss: 0.6508 - acc: 0.6907 - val_loss: 0.6582 - val_acc: 0.6944
+Epoch 20/100
+36s - loss: 0.6515 - acc: 0.6921 - val_loss: 0.6471 - val_acc: 0.6982
+Epoch 21/100
+36s - loss: 0.6529 - acc: 0.6925 - val_loss: 0.6599 - val_acc: 0.6864
+Epoch 22/100
+36s - loss: 0.6489 - acc: 0.6969 - val_loss: 0.6751 - val_acc: 0.6852
+Epoch 23/100
+36s - loss: 0.6353 - acc: 0.7036 - val_loss: 0.6398 - val_acc: 0.7006
+Epoch 24/100
+36s - loss: 0.6394 - acc: 0.6999 - val_loss: 0.6410 - val_acc: 0.6996
+Epoch 25/100
+36s - loss: 0.6346 - acc: 0.7017 - val_loss: 0.6604 - val_acc: 0.6920
+Epoch 26/100
+36s - loss: 0.6346 - acc: 0.6977 - val_loss: 0.6397 - val_acc: 0.7072
+Epoch 27/100
+36s - loss: 0.6293 - acc: 0.7051 - val_loss: 0.6448 - val_acc: 0.7006
+Epoch 28/100
+36s - loss: 0.6266 - acc: 0.7073 - val_loss: 0.6352 - val_acc: 0.7060
+Epoch 29/100
+36s - loss: 0.6185 - acc: 0.7109 - val_loss: 0.6361 - val_acc: 0.7004
+Epoch 30/100
+36s - loss: 0.6141 - acc: 0.7123 - val_loss: 0.6362 - val_acc: 0.7000
+Epoch 31/100
+36s - loss: 0.6222 - acc: 0.7092 - val_loss: 0.6376 - val_acc: 0.7022
+Epoch 32/100
+36s - loss: 0.6166 - acc: 0.7124 - val_loss: 0.6298 - val_acc: 0.7072
+Epoch 33/100
+36s - loss: 0.6093 - acc: 0.7160 - val_loss: 0.6337 - val_acc: 0.7064
+Epoch 34/100
+36s - loss: 0.6106 - acc: 0.7186 - val_loss: 0.6609 - val_acc: 0.6906
+Epoch 35/100
+36s - loss: 0.6007 - acc: 0.7168 - val_loss: 0.6233 - val_acc: 0.7130
+Epoch 36/100
+36s - loss: 0.6029 - acc: 0.7183 - val_loss: 0.6253 - val_acc: 0.7076
+Epoch 37/100
+36s - loss: 0.6072 - acc: 0.7161 - val_loss: 0.6284 - val_acc: 0.7112
+Epoch 38/100
+36s - loss: 0.5893 - acc: 0.7297 - val_loss: 0.6233 - val_acc: 0.7084
+Epoch 39/100
+36s - loss: 0.5914 - acc: 0.7278 - val_loss: 0.6236 - val_acc: 0.7102
+Epoch 40/100
+36s - loss: 0.5909 - acc: 0.7253 - val_loss: 0.6255 - val_acc: 0.7048
+Epoch 41/100
+36s - loss: 0.5927 - acc: 0.7231 - val_loss: 0.6294 - val_acc: 0.7080
+Epoch 42/100
+36s - loss: 0.5812 - acc: 0.7313 - val_loss: 0.6319 - val_acc: 0.7108
+Epoch 43/100
+36s - loss: 0.5817 - acc: 0.7308 - val_loss: 0.6184 - val_acc: 0.7194
+Epoch 44/100
+36s - loss: 0.5841 - acc: 0.7315 - val_loss: 0.6587 - val_acc: 0.6922
+Epoch 45/100
+36s - loss: 0.5844 - acc: 0.7299 - val_loss: 0.6393 - val_acc: 0.7024
+Epoch 46/100
+36s - loss: 0.5794 - acc: 0.7291 - val_loss: 0.6307 - val_acc: 0.7026
+Epoch 47/100
+36s - loss: 0.5736 - acc: 0.7393 - val_loss: 0.6265 - val_acc: 0.7110
+Epoch 48/100
+36s - loss: 0.5784 - acc: 0.7315 - val_loss: 0.6204 - val_acc: 0.7136
+Epoch 49/100
+36s - loss: 0.5703 - acc: 0.7402 - val_loss: 0.6216 - val_acc: 0.7108
+Epoch 50/100
+36s - loss: 0.5720 - acc: 0.7362 - val_loss: 0.6514 - val_acc: 0.7004
+Epoch 51/100
+36s - loss: 0.5656 - acc: 0.7372 - val_loss: 0.6509 - val_acc: 0.7020
+Epoch 52/100
+36s - loss: 0.5580 - acc: 0.7452 - val_loss: 0.6314 - val_acc: 0.7048
+Epoch 53/100
+36s - loss: 0.5573 - acc: 0.7415 - val_loss: 0.6380 - val_acc: 0.7030
+Epoch 54/100
+36s - loss: 0.5611 - acc: 0.7423 - val_loss: 0.6537 - val_acc: 0.6950
+Epoch 55/100
+36s - loss: 0.5563 - acc: 0.7489 - val_loss: 0.6460 - val_acc: 0.6976
+Epoch 56/100
+36s - loss: 0.5534 - acc: 0.7457 - val_loss: 0.6584 - val_acc: 0.6948
+Epoch 57/100
+36s - loss: 0.5601 - acc: 0.7383 - val_loss: 0.6286 - val_acc: 0.7118
+Epoch 58/100
+36s - loss: 0.5564 - acc: 0.7455 - val_loss: 0.6272 - val_acc: 0.7094
+Epoch 59/100
+36s - loss: 0.5483 - acc: 0.7492 - val_loss: 0.6340 - val_acc: 0.7160
+Epoch 60/100
+36s - loss: 0.5466 - acc: 0.7497 - val_loss: 0.6334 - val_acc: 0.7090
+Epoch 61/100
+36s - loss: 0.5519 - acc: 0.7475 - val_loss: 0.6330 - val_acc: 0.7054
+Epoch 62/100
+36s - loss: 0.5516 - acc: 0.7430 - val_loss: 0.6439 - val_acc: 0.7022
+Epoch 63/100
+36s - loss: 0.5408 - acc: 0.7542 - val_loss: 0.6244 - val_acc: 0.7148
+Epoch 64/100
+
+plt.style.use('ggplot')

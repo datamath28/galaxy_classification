@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-plt.style.use('ggplot')
 import os
 from keras.models import Sequential
 from keras.layers.core import Dense, Dropout, Activation, Flatten
@@ -62,11 +61,11 @@ if __name__ == '__main__':
     print "building model"
     # Build the NN model one piece at a time
     model = Sequential()
-    model.add(Convolution2D(16, 3, 3,
+    model.add(Convolution2D(32, 3, 3,
                             border_mode='valid',
                             input_shape=(1, 100, 100)))
     model.add(Activation('relu'))
-    model.add(Convolution2D(16, 3, 3,
+    model.add(Convolution2D(32, 3, 3,
                             border_mode='valid'))
     model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
