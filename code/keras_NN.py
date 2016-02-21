@@ -58,39 +58,36 @@ if __name__ == '__main__':
     print "building model"
     # Build the NN model one piece at a time
     model = Sequential()
-    model.add(Convolution2D(24, 3, 3,
+    model.add(Convolution2D(24, 5, 5,
                             border_mode='valid',
                             input_shape=(1, 100, 100)))
-    model.add(ELU())
-    model.add(Convolution2D(24, 3, 3,
-                            border_mode='valid'))
-    model.add(ELU())
+    model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
     model.add(Dropout(0.25))
 
     model.add(Convolution2D(32, 3, 3,
                             border_mode='valid'))
-    model.add(ELU())
+    model.add(Activation('relu'))
     model.add(Convolution2D(32, 3, 3,
                             border_mode='valid'))
-    model.add(ELU())
+    model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(2, 2)))
-    model.add(Dropout(0.25))
+    model.add(Dropout(0.5))
 
     model.add(Flatten())
     # Define hidden layer: 10000 pixels in input, output dimension will have 512 nodes,
     # initialize weights using uniform dist
     model.add(Dense(512))
     # Sigmoid activation
-    model.add(ELU())
+    model.add(Activation('relu'))
     # Use 35% dropout on this layer for regularization to avoid overfitting
-    model.add(Dropout(0.35))
+    model.add(Dropout(0.75))
     # Define another layer with 512 nodes (input and output)
     model.add(Dense(512, init='uniform'))
     # Sigmoid activation
-    model.add(ELU())
+    model.add(Activation('relu'))
     # Use 35% dropout on this layer for regularization to avoid overfitting
-    model.add(Dropout(0.35))
+    model.add(Dropout(0.75))
     # Last layer (output) has 3 outputs with 512 inputs
     model.add(Dense(output_channels, init='uniform'))
     # Activation function is softmax b/c it is the output layer
